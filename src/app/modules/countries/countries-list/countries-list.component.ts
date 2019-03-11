@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { animations } from '../../../animations/animations';
 import { Observable } from 'rxjs';
 import { Country } from '../state/country.model';
-import { CountriesService } from '../../../services/countries.service';
+import { CountriesService } from '../state/countries.service';
 import { CountryQuery } from '../state/country.query';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 

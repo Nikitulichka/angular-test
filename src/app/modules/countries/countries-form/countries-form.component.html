@@ -1,4 +1,48 @@
-<h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
-    Форма
-</h1>
+<div class="content-card">
+    <div class="toolbar">
+        <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
+            <div *ngIf="pageType ==='edit'">
+                <div *ngIf="country$ | async">
+                    {{ country$.name }}
+                </div>
+            </div>
+            <div *ngIf="pageType !=='edit'">
+                Создание пользователя
+            </div>
+            <div class="actions-buttons">
+                <button mat-flat-button [routerLink]="'/countries/list'">
+                    Отмена
+                </button>
 
+                <button mat-raised-button
+                        [disabled]="countryForm.invalid"
+                        *ngIf="pageType !=='edit'" (click)="addCountry()">
+                    <span>Добавить</span>
+                </button>
+
+                <button mat-raised-button
+                        [disabled]="countryForm.invalid || countryForm.pristine"
+                        *ngIf="pageType ==='edit'" (click)="saveCountry()">
+                    <span>Сохранить</span>
+                </button>
+            </div>
+        </h1>
+
+    </div>
+    <div class="content">
+        <div class="s-form">
+            <form name="projectForm" [formGroup]="countryForm">
+
+                <mat-form-field class="w-100">
+                    <input matInput
+                           name="name"
+                           formControlName="name"
+                           placeholder="Имя пользователя"
+                           required
+                           [value]="country$.name | async">
+                </mat-form-field>
+
+            </form>
+        </div>
+    </div>
+</div>

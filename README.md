@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
 
 ## Fake db "json-server" server
-Run `npm run fake-db` for start json-server
+Run `npm run db` for start json-server
 
 ## Development server
 

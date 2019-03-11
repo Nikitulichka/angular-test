@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import { Country } from '../models/Country';
-import { CountryStore } from '../modules/countries/state/country.store';
+import { Country } from '../../../models/Country';
+import { CountryStore } from './country.store';
 
 
 @Injectable({
@@ -19,6 +19,17 @@ export class CountriesService {
     getCountries() {
         this.http.get('/countries').subscribe((data: Country[]) => {
             this.countryStore.set(data);
+        });
+    }
+
+    getCountry(id) {
+        this.http.get(`/countries/${id}`).subscribe((data: Country) => {
+            this.countryStore.add(data);
+        });
+    }
+    addCountry(country: Country) {
+        this.http.post('/countries', country).subscribe((data: Country) => {
+            this.countryStore.add(data);
         });
     }
 }

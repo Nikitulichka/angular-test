@@ -13,7 +13,7 @@ import { CountriesComponent } from './countries.component';
                     { path: '', redirectTo: 'list', pathMatch: 'full'},
                     { path: 'list', loadChildren: './countries-list/countries-list.module#CountriesListModule' },
                     { path: 'edit/:id', loadChildren: './countries-form/countries-form.module#CountriesFormModule' },
-                    { path: 'create/:id', loadChildren: './countries-form/countries-form.module#CountriesFormModule' },
+                    { path: 'new', loadChildren: './countries-form/countries-form.module#CountriesFormModule' },
                 ]
             }
         ])
