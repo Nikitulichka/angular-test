@@ -1,3 +1,53 @@
-<h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
-    Список стран
-</h1>
+Сука так список с стора выводит
+<div *ngFor="let country of countries$ | async">
+    <strong>{{country.name}}</strong>
+</div>
+А в таблице я хуй знает как обновить(
+
+<div class="content-card">
+    <div class="toolbar">
+        <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
+            Список стран
+            <button class="add-button" mat-button mat-stroked-button routerLink="/country/new">Добавить страну</button>
+        </h1>
+    </div>
+    <div class="content">
+        <div class="table" [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
+
+            <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="index">
+                    <th mat-header-cell *matHeaderCellDef> № </th>
+                    <td mat-cell *matCellDef="let user; let i = index"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Имя </th>
+                    <td mat-cell *matCellDef="let user">
+                        {{user.name}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Действие </th>
+                    <td mat-cell *matCellDef="let user">
+                        <button mat-button mat-raised-button [routerLink]="['/users/edit', user.id]">
+                            Редактировать
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>
+
