@@ -11,7 +11,7 @@ import { APIInterceptor } from './services/api.interceptor';
 
 
 const rootRoutes: Routes = [
-    { path: '', redirectTo: '/users', pathMatch: 'full' },
+    { path: '', redirectTo: '/users/list', pathMatch: 'full' },
     {
         path: '',
         loadChildren: './modules/home.module#HomeModule'
