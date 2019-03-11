@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "name": "Валера",
+      "id": 9
+    },
+    {
+      "name": "Серега",
+      "id": 10
+    },
+    {
+      "name": "Никитос",
+      "id": 11
+    },
+    {
+      "name": "rty",
+      "id": 12
+    }
+  ],
+  "countries": [
+    {
+      "id": 1,
+      "name": "Гандурас"
+    }
+  ],
+  "user-countries": [
+    {
+      "id": 1,
+      "userId": 1,
+      "countryId": 2,
+      "visited": true,
+      "hasVisa": true
+    }
+  ]
+}

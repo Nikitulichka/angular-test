@@ -1,0 +1,46 @@
+
+<div class="content-card">
+    <div class="toolbar">
+        <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
+            <div *ngIf="pageType ==='edit'">
+                {{user.name}}
+            </div>
+            <div *ngIf="pageType ==='new'">
+                Создание пользователя
+            </div>
+            <div class="actions-buttons">
+                <button mat-flat-button [routerLink]="'/users/list'">
+                    Отмена
+                </button>
+
+                <button mat-raised-button
+                        [disabled]="userForm.invalid"
+                        *ngIf="pageType ==='new'" (click)="addUser()">
+                    <span>Добавить</span>
+                </button>
+
+                <button mat-raised-button
+                        [disabled]="userForm.invalid || userForm.pristine"
+                        *ngIf="pageType ==='edit'" (click)="saveUser()">
+                    <span>Сохранить</span>
+                </button>
+            </div>
+        </h1>
+
+    </div>
+    <div class="content">
+        <div class="s-form">
+            <form name="projectForm" [formGroup]="userForm">
+
+                <mat-form-field class="w-100">
+                    <input matInput
+                           name="name"
+                           formControlName="name"
+                           placeholder="Имя пользователя"
+                           required>
+                </mat-form-field>
+
+            </form>
+        </div>
+    </div>
+</div>

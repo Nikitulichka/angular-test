@@ -1,0 +1,9 @@
+.custom-autocomplete {
+  .mat-autocomplete-panel {
+    overflow: hidden;
+  }
+  .custom-autocomplete__list {
+    position: relative;
+    overflow-y:auto;
+  }
+}
