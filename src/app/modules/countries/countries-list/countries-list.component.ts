@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-    selector   : 'app-profile-settings',
+    selector   : 'app-countries-list',
     templateUrl: './countries-list.component.html',
     styleUrls  : ['./countries-list.component.scss'],
     animations
