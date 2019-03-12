@@ -10,7 +10,7 @@
         <div class="s-form">
             <form [formGroup]="filterForm">
 
-                <mat-form-field class="w-100">
+                <mat-form-field class="form-50">
                     <mat-select
                             placeholder="Выбрать имя"
                             formControlName="user"
@@ -20,7 +20,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="w-100">
+                <mat-form-field class="form-50">
                     <input type="text"
                            placeholder="Выбрать страну"
                            (keyup)="autocomplete(autocompleteInput.value)"
@@ -35,34 +35,34 @@
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-                <mat-form-field class="w-100">
+                <mat-form-field class="form-50">
                     <mat-select
                             placeholder="Посещенность"
                             formControlName="visited"
                             name="visited">
-                        <mat-option value="0">
+                        <mat-option value="">
                             Любое
                         </mat-option>
                         <mat-option value="1">
                             Посещена
                         </mat-option>
-                        <mat-option value="2">
+                        <mat-option value="0">
                             Не посещена
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="w-100">
+                <mat-form-field class="form-50">
                     <mat-select
                             placeholder="Посещенность"
                             formControlName="visa"
                             name="visa">
-                        <mat-option value="0">
+                        <mat-option value="">
                             Любое
                         </mat-option>
                         <mat-option value="1">
                             Есть виза
                         </mat-option>
-                        <mat-option value="2">
+                        <mat-option value="0">
                             Нет визы
                         </mat-option>
                     </mat-select>

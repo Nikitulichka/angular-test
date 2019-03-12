@@ -30,7 +30,9 @@ $trueOrFalse-theme: mat-light-theme($trueOrFalse-primary, $trueOrFalse-accent, $
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+body * {
+  box-sizing: border-box;
+}
 .container {
   margin: 30px;
 }
@@ -42,6 +44,10 @@ table, .table {
 
 .w-100 {
   width: 100%;
+}
+.form-50 {
+  width: 50%;
+  padding: 0 10px;
 }
 
 .content-card {

@@ -16,7 +16,7 @@ const rootRoutes: Routes = [
         path: '',
         loadChildren: './modules/home.module#HomeModule'
     }
-    // auth routs
+    // auth routs here
 ];
 
 
