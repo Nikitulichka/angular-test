@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { animations } from '../../../animations/animations';
 import { Observable } from 'rxjs';
 import { Country } from '../state/country.model';
 import { CountriesService } from '../state/countries.service';
 import { CountryQuery } from '../state/country.query';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 
 @Component({
@@ -16,8 +15,6 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 export class CountriesListComponent implements OnInit {
     countries$: Observable<Country[]>;
     selectLoading$: Observable<boolean>;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    dataSource = new MatTableDataSource<Country>([]);
     constructor(
         private countriesService: CountriesService,
         private countryQuery: CountryQuery) {
@@ -27,15 +24,11 @@ export class CountriesListComponent implements OnInit {
         this.countries$ = this.countryQuery.selectAll();
         this.selectLoading$ = this.countryQuery.selectLoading();
         this.getCountries();
-
-       /* this.dataSource.data = data; //new data from store
-        this.dataSource.paginator = this.paginator;*/
-
     }
 
     getCountries() {
         if (this.countryQuery.isPristine) {
-            this.countriesService.getCountries()
+            this.countriesService.getCountries();
         }
     }
 }

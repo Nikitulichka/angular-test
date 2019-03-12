@@ -1,66 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { animations } from '../../../animations/animations';
-import { User } from '../../../models/User';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
+import { UsersQuery } from '../state/users.query';
+import { UsersService } from '../state/users.service';
 
 @Component({
-    selector   : 'app-users-form',
+    selector   : 'app-user-form',
     templateUrl: './users-form.component.html',
     styleUrls  : ['./users-form.component.scss'],
-    animations
+    animations,
 })
 export class UsersFormComponent implements OnInit {
-    user = new User();
     userForm: FormGroup;
     pageType: string;
-    userId: number;
+    user$ = this.userQuery.selectEntity(this.userId);
     constructor(private formBuilder: FormBuilder,
-                private route: ActivatedRoute,
+                private activatedRoute: ActivatedRoute,
                 private router: Router,
-                private userService: UserService) {
-        this.userId = route.snapshot.params.id;
-        if (this.userId) {
-            this.pageType = 'edit';
-            this.userService.getUser(this.userId).subscribe(res => {
-                this.user = new User(res);
-                this.userForm = this.createUserForm();
-            });
-        } else {
-            this.pageType = 'new';
-            this.user = new User();
-        }
+                private userQuery: UsersQuery,
+                private userService: UsersService) {
         this.userForm = this.createUserForm();
     }
 
     ngOnInit() {
+        if (this.userId) {
+            this.pageType = 'edit';
+            if (this.userQuery.hasEntity(this.userId) === false) {
+                this.userService.getUser(this.userId);
+            }
+        }
     }
 
     createUserForm() {
         return this.formBuilder.group({
-            name: [this.user.name]
+            name: ['', Validators.required],
         });
     }
 
     addUser() {
-        this.userService.createUser(this.userForm.value)
-            .subscribe(res => {
-                console.log(res);
-                this.router.navigate(['/users/list']);
-            }, (error) => {
-                console.log(error);
-            });
+        this.userService.addUser(this.userForm.value);
     }
 
     saveUser() {
-        const body = this.userForm.value;
-        this.userService.updateUser(body, this.userId)
-            .subscribe(res => {
-                console.log(res);
-                this.router.navigate(['/users/list']);
-            }, (error) => {
-               console.log(error);
-            });
+        this.userService.updateUser(this.userForm.value, this.userId);
+    }
+
+    get userId() {
+        return this.activatedRoute.snapshot.params.id;
     }
 }

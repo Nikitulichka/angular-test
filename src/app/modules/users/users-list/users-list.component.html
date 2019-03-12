@@ -7,7 +7,7 @@
     </div>
     <div class="s-list" [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
         <ul>
-            <li *ngFor="let user of users ">
+            <li *ngFor="let user of users$ | async">
                 {{user.name}} <button mat-button [routerLink]="['/users/edit', user.id]">Редактировать</button>
             </li>
         </ul>

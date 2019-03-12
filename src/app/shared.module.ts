@@ -14,6 +14,7 @@ import {
     MatToolbarModule
 } from '@angular/material';
 import { CountryStore } from './modules/countries/state/country.store';
+import { UsersStore } from './modules/users/state/users.store';
 
 const materialModules = [
     MatToolbarModule,
@@ -46,7 +47,8 @@ const materialModules = [
 
     providers: [
         HttpClient,
-        CountryStore
+        CountryStore,
+        UsersStore
     ]
 })
 

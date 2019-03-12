@@ -20,7 +20,7 @@ export class CountriesFormComponent implements OnInit {
                 private router: Router,
                 private countryQuery: CountryQuery,
                 private countriesService: CountriesService) {
-        this.countryForm = this.createUserForm();
+        this.countryForm = this.createCountryForm();
     }
 
     ngOnInit() {
@@ -32,7 +32,7 @@ export class CountriesFormComponent implements OnInit {
         }
     }
 
-    createUserForm() {
+    createCountryForm() {
         return this.formBuilder.group({
             name: ['', Validators.required],
         });

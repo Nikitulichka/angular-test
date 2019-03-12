@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
-import { Country } from '../../../models/Country';
 import { CountryStore } from './country.store';
 import { Router } from '@angular/router';
-import {User} from "../../../models/User";
+import { Country } from './country.model';
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class CountriesService {
 
   constructor(
       private http: HttpClient,
       private countryStore: CountryStore,
       private router: Router,
-      ) { }
+      ) {}
 
     getCountries() {
         this.http.get('/countries').subscribe((data: Country[]) => {
@@ -37,6 +31,7 @@ export class CountriesService {
             this.router.navigate(['/countries/list']);
         });
     }
+
     updateCountry(name: string, id: number) {
         this.http.put(`/countries/${id}`, name).subscribe((data: Country) => {
             this.countryStore.update(data.id, {name: data.name});

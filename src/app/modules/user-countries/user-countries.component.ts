@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { animations } from '../../animations/animations';
 
 @Component({
-    selector: 'app-start',
+    selector: 'app-user-counties',
     templateUrl: './user-countries.component.html',
     styleUrls: ['./user-countries.component.scss'],
     animations

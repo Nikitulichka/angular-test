@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {animations} from '../../../animations/animations';
-import { User } from '../../../models/User';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-
+import { Component, OnInit } from '@angular/core';
+import { animations } from '../../../animations/animations';
+import { UsersService } from '../state/users.service';
+import { User } from '../state/users.model';
+import { Observable } from 'rxjs';
+import { UsersQuery } from '../state/users.query';
 
 
 @Component({
@@ -13,16 +13,22 @@ import { UserService } from '../../../services/user.service';
     animations
 })
 export class UsersListComponent implements OnInit {
-    users: User[] = [];
-
-    constructor(private userService: UserService) {
+    users$: Observable<User[]>;
+    selectLoading$: Observable<boolean>;
+    constructor(
+        private usersService: UsersService,
+        private usersQuery: UsersQuery) {
     }
 
-    displayedColumns: string[] = ['index', 'id', 'name', 'actions'];
-
     ngOnInit() {
-        this.userService.getUsers().subscribe(data => {
-            this.users = data;
-        });
+        this.users$ = this.usersQuery.selectAll();
+        this.selectLoading$ = this.usersQuery.selectLoading();
+        this.getUsers();
+    }
+
+    getUsers() {
+        if (this.usersQuery.isPristine) {
+            this.usersService.getUsers();
+        }
     }
 }

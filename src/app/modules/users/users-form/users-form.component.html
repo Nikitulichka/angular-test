@@ -3,7 +3,9 @@
     <div class="toolbar">
         <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
             <div *ngIf="pageType ==='edit'">
-                {{user.name}}
+                <div *ngIf="user$ | async">
+                    {{ (user$ | async).name }}
+                </div>
             </div>
             <div *ngIf="pageType ==='new'">
                 Создание пользователя
@@ -37,7 +39,8 @@
                            name="name"
                            formControlName="name"
                            placeholder="Имя пользователя"
-                           required>
+                           [value]="(user$ | async) ? (user$ | async).name : ''"
+                    >
                 </mat-form-field>
 
             </form>

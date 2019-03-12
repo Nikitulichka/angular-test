@@ -5,7 +5,6 @@ import { Country } from './country.model';
 
 @Injectable({providedIn: 'root'})
 export class CountryQuery extends QueryEntity<CountryState, Country> {
-    debugger;
     constructor(protected store: CountryStore) {
         super(store);
     }
