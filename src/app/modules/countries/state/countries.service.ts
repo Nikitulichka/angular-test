@@ -5,6 +5,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import { Country } from '../../../models/Country';
 import { CountryStore } from './country.store';
 import { Router } from '@angular/router';
+import {User} from "../../../models/User";
 
 
 @Injectable({
@@ -33,6 +34,12 @@ export class CountriesService {
     addCountry(country: Country) {
         this.http.post('/countries', country).subscribe((data: Country) => {
             this.countryStore.add(data);
+            this.router.navigate(['/countries/list']);
+        });
+    }
+    updateCountry(name: string, id: number) {
+        this.http.put(`/countries/${id}`, name).subscribe((data: Country) => {
+            this.countryStore.update(data.id, {name: data.name});
             this.router.navigate(['/countries/list']);
         });
     }

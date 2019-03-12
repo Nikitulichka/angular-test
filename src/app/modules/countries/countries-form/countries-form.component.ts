@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { animations } from '../../../animations/animations';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountriesService } from '../state/countries.service';
 import { CountryQuery } from '../state/country.query';
@@ -9,7 +9,7 @@ import { CountryQuery } from '../state/country.query';
     selector   : 'app-countries-form',
     templateUrl: './countries-form.component.html',
     styleUrls  : ['./countries-form.component.scss'],
-    animations
+    animations,
 })
 export class CountriesFormComponent implements OnInit {
     countryForm: FormGroup;
@@ -34,7 +34,7 @@ export class CountriesFormComponent implements OnInit {
 
     createUserForm() {
         return this.formBuilder.group({
-            name: ''
+            name: ['', Validators.required],
         });
     }
 
@@ -43,7 +43,7 @@ export class CountriesFormComponent implements OnInit {
     }
 
     saveCountry() {
-        console.log(this.country$);
+        this.countriesService.updateCountry(this.countryForm.value, this.countryId);
     }
 
     get countryId() {

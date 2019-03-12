@@ -1,9 +1,9 @@
-<div class="content-card">
+<div class="content-card" >
     <div class="toolbar">
         <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
             <div *ngIf="pageType ==='edit'">
                 <div *ngIf="country$ | async">
-                    {{ country$.name | async }}
+                     {{ (country$ | async).name }}
                 </div>
             </div>
             <div *ngIf="pageType !=='edit'">
@@ -37,9 +37,8 @@
                     <input matInput
                            name="name"
                            formControlName="name"
-                           placeholder="Имя пользователя"
-                           required
-                           [value]="country$.name | async">
+                           placeholder="Имя страны"
+                           [value]="(country$ | async) ? (country$ | async).name : ''">
                 </mat-form-field>
 
             </form>
