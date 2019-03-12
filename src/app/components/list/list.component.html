@@ -1,0 +1,7 @@
+<div class="s-list">
+  <ul>
+    <li *ngFor="let item of listData | async">
+      {{item.name}} <button mat-button (click)="edit.emit(item.id)">Редактировать</button>
+    </li>
+  </ul>
+</div>

@@ -5,12 +5,6 @@
             <button class="add-button" mat-button mat-stroked-button routerLink="/countries/new">Добавить страну</button>
         </h1>
     </div>
-    <div class="s-list" [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
-        <ul>
-            <li *ngFor="let country of countries$ | async">
-                {{country.name}} <button mat-button [routerLink]="['/countries/edit', country.id]">Редактировать</button>
-            </li>
-        </ul>
-    </div>
+    <app-list [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" [listData]="countries$" (edit)="editCountry($event)"></app-list>
 </div>
 

@@ -5,12 +5,6 @@
             <button class="add-button" mat-button mat-stroked-button routerLink="/users/new">Добавить пользователя</button>
         </h1>
     </div>
-    <div class="s-list" [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}">
-        <ul>
-            <li *ngFor="let user of users$ | async">
-                {{user.name}} <button mat-button [routerLink]="['/users/edit', user.id]">Редактировать</button>
-            </li>
-        </ul>
-    </div>
+    <app-list [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" [listData]="users$" (edit)="editUser($event)"></app-list>
 </div>
 

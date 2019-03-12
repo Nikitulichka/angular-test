@@ -4,6 +4,7 @@ import { UsersService } from '../state/users.service';
 import { User } from '../state/users.model';
 import { Observable } from 'rxjs';
 import { UsersQuery } from '../state/users.query';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class UsersListComponent implements OnInit {
     selectLoading$: Observable<boolean>;
     constructor(
         private usersService: UsersService,
-        private usersQuery: UsersQuery) {
+        private usersQuery: UsersQuery,
+        private router: Router) {
     }
 
     ngOnInit() {
@@ -30,5 +32,9 @@ export class UsersListComponent implements OnInit {
         if (this.usersQuery.isPristine) {
             this.usersService.getUsers();
         }
+    }
+
+    editUser(id) {
+        this.router.navigate(['/users/edit', id]);
     }
 }

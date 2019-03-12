@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Country } from '../state/country.model';
 import { CountriesService } from '../state/countries.service';
 import { CountryQuery } from '../state/country.query';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class CountriesListComponent implements OnInit {
     selectLoading$: Observable<boolean>;
     constructor(
         private countriesService: CountriesService,
-        private countryQuery: CountryQuery) {
+        private countryQuery: CountryQuery,
+        private router: Router) {
     }
 
     ngOnInit() {
@@ -30,5 +32,9 @@ export class CountriesListComponent implements OnInit {
         if (this.countryQuery.isPristine) {
             this.countriesService.getCountries();
         }
+    }
+
+    editCountry(id) {
+        this.router.navigate(['/countries/edit', id]);
     }
 }

@@ -15,6 +15,8 @@ import {
 } from '@angular/material';
 import { CountryStore } from './modules/countries/state/country.store';
 import { UsersStore } from './modules/users/state/users.store';
+import { ListComponent } from './components/list/list.component';
+import { RouterModule } from '@angular/router';
 
 const materialModules = [
     MatToolbarModule,
@@ -28,13 +30,20 @@ const materialModules = [
     MatAutocompleteModule
 ];
 
+const components = [
+    ListComponent
+];
+
 @NgModule({
-    declarations: [],
+    declarations: [
+        ...components
+    ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        RouterModule,
         ...materialModules
     ],
     exports: [
@@ -42,6 +51,8 @@ const materialModules = [
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        RouterModule,
+        ...components,
         ...materialModules
     ],
 

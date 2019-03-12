@@ -7,7 +7,7 @@
                     {{ (user$ | async).name }}
                 </div>
             </div>
-            <div *ngIf="pageType ==='new'">
+            <div *ngIf="pageType !=='edit'">
                 Создание пользователя
             </div>
             <div class="actions-buttons">
@@ -17,7 +17,7 @@
 
                 <button mat-raised-button
                         [disabled]="userForm.invalid"
-                        *ngIf="pageType ==='new'" (click)="addUser()">
+                        *ngIf="pageType !=='edit'" (click)="addUser()">
                     <span>Добавить</span>
                 </button>
 
