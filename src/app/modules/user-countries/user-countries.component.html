@@ -1,0 +1,77 @@
+
+<div class="content-card">
+    <div class="toolbar">
+        <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
+            Страны пользователя
+            <button class="add-button" mat-button mat-stroked-button>Применить и сохранить</button>
+        </h1>
+    </div>
+    <div class="content">
+        <div class="s-form">
+            <form [formGroup]="filterForm">
+
+                <mat-form-field class="w-100">
+                    <mat-select
+                            placeholder="Выбрать имя"
+                            formControlName="user"
+                            name="user">
+                        <mat-option *ngFor="let user of users$ | async " [value]="user.id">
+                            {{user.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <input type="text"
+                           placeholder="Выбрать страну"
+                           (keyup)="autocomplete(autocompleteInput.value)"
+                           matInput
+                           [formControl]="autocompleteInput"
+                           [matAutocomplete]="auto"
+                           formControlName="country"
+                           name="country">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of countries$ | async" [value]="option.name">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-select
+                            placeholder="Посещенность"
+                            formControlName="visited"
+                            name="visited">
+                        <mat-option value="0">
+                            Любое
+                        </mat-option>
+                        <mat-option value="1">
+                            Посещена
+                        </mat-option>
+                        <mat-option value="2">
+                            Не посещена
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-select
+                            placeholder="Посещенность"
+                            formControlName="visa"
+                            name="visa">
+                        <mat-option value="0">
+                            Любое
+                        </mat-option>
+                        <mat-option value="1">
+                            Есть виза
+                        </mat-option>
+                        <mat-option value="2">
+                            Нет визы
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button mat-button mat-stroked-button type="submit"  [disabled]="filterForm.invalid">Показать</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
