@@ -3,11 +3,11 @@
         <h1 [@animate]="{value:'*',params:{delay:'200ms',opacity:'0'}}" class="s-title">
             <div *ngIf="pageType ==='edit'">
                 <div *ngIf="country$ | async">
-                    {{ country$.name }}
+                    {{ country$.name | async }}
                 </div>
             </div>
             <div *ngIf="pageType !=='edit'">
-                Создание пользователя
+                Создание страны
             </div>
             <div class="actions-buttons">
                 <button mat-flat-button [routerLink]="'/countries/list'">

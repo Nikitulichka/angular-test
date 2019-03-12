@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 import { Country } from '../../../models/Country';
 import { CountryStore } from './country.store';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,7 +14,8 @@ export class CountriesService {
 
   constructor(
       private http: HttpClient,
-      private countryStore: CountryStore
+      private countryStore: CountryStore,
+      private router: Router,
       ) { }
 
     getCountries() {
@@ -27,9 +29,11 @@ export class CountriesService {
             this.countryStore.add(data);
         });
     }
+
     addCountry(country: Country) {
         this.http.post('/countries', country).subscribe((data: Country) => {
             this.countryStore.add(data);
+            this.router.navigate(['/countries/list']);
         });
     }
 }

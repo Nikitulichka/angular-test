@@ -84,3 +84,19 @@ table, .table {
   justify-content: space-between;
   align-items: center;
 }
+
+.s-list {
+  width: 100%;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 5px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eeeeee;
+    }
+  }
+}

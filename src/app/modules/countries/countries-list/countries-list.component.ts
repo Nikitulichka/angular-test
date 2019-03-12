@@ -35,7 +35,7 @@ export class CountriesListComponent implements OnInit {
 
     getCountries() {
         if (this.countryQuery.isPristine) {
-            this.countriesService.getCountries();
+            this.countriesService.getCountries()
         }
     }
 }

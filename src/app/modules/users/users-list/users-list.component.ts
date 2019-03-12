@@ -13,9 +13,7 @@ import { UserService } from '../../../services/user.service';
     animations
 })
 export class UsersListComponent implements OnInit {
-    @ViewChild(MatPaginator) paginator: MatPaginator;
     users: User[] = [];
-    dataSource = new MatTableDataSource<User>(this.users);
 
     constructor(private userService: UserService) {
     }
@@ -25,8 +23,6 @@ export class UsersListComponent implements OnInit {
     ngOnInit() {
         this.userService.getUsers().subscribe(data => {
             this.users = data;
-            this.dataSource.data = this.users;
-            this.dataSource.paginator = this.paginator;
         });
     }
 }

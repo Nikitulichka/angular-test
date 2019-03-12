@@ -12,9 +12,9 @@ import { CountryQuery } from '../state/country.query';
     animations
 })
 export class CountriesFormComponent implements OnInit {
-    country$ = this.countryQuery.selectEntity(this.countryId);
     countryForm: FormGroup;
     pageType: string;
+    country$ = this.countryQuery.selectEntity(this.countryId);
     constructor(private formBuilder: FormBuilder,
                 private activatedRoute: ActivatedRoute,
                 private router: Router,
